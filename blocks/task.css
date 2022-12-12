@@ -1,0 +1,29 @@
+.task{
+    width: 100%;
+    padding: 16px 14px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    border: solid #d6d6d6 1px;
+    border-radius: 14px;
+}
+
+.task__text{
+    padding: 2px 0;
+    font-size: 16px;
+    word-break: break-word
+}
+
+.task__edit-button{
+    padding: 0;
+    border: none;
+    background: none;
+    width: 24px;
+    height: 24px;
+}
+.task:hover path{
+    fill:#D0D0D0;
+}
+.task__edit-button:hover path{
+    fill: #0083b0;
+}

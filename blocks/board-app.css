@@ -1,0 +1,20 @@
+.board-app__main{
+    padding: 48px 0;
+}
+
+.board-app__header{
+    padding: 24px 0;
+    background: linear-gradient(to left, #00b4db, #0083b0);
+}
+.board-app__header{
+    color: white;
+}
+
+.board-app__inner{
+  width: 1200px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+  margin: 0 auto;
+}

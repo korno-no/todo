@@ -1,0 +1,25 @@
+.add-task{
+    align-self: start;
+    padding: 25px 21px;
+    border: solid #d6d6d6 1px;
+    border-radius: 14px;
+}
+
+.add-task__form{
+    display: flex;
+}
+
+.add-task__lable{
+    margin-bottom: 15px;
+}
+
+
+.add-task__input{
+    padding: 15px 11px;
+    margin-right: 17px;
+    border: solid #d6d6d6 1px;
+    border-radius: 14px;
+    font-size: 16px;
+}
+
+
