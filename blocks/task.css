@@ -11,7 +11,7 @@
 .task__text{
     padding: 2px 0;
     font-size: 16px;
-    word-break: break-word
+    word-break: break-word;
 }
 
 .task__edit-button{
@@ -24,6 +24,15 @@
 .task:hover path{
     fill:#D0D0D0;
 }
-.task__edit-button:hover path{
+.task__edit-button:hover path, .task__save-button:hover path {
     fill: #0083b0;
+}
+
+.task__input{
+    width: 80%;
+    padding: 4px;
+    padding-top:3px;
+    border: none;
+    border-bottom: solid #d6d6d6 1px;
+    font-size:16px;
 }

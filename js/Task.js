@@ -13,22 +13,38 @@ class Task{
         tasksArray.push(this);
     }
     showNewTask(){
-        const div = document.createElement('div');
-        div.className = 'task';
-        this.taskHtml = this.getTamplate();
-        this.div = div;
-        div.innerHTML= this.taskHtml;
-        taskBoardList.appendChild(div);
+        this.div = document.createElement('div');
+        this.div.className = 'task';
+        this.div.innerHTML= this.getTamplate('task');
+        taskBoardList.appendChild(this.div);
         addTaskBoard.cleanInput();
-        this.edit(div);
-
+        this.edit();
     }
-    
-    edit(div){
-        const editBtn =  div.querySelector('.task__edit-button');
-        editBtn.addEventListener('click', function(){
-            div.style.backgroundColor = '#ff0000';
-                })
+    edit(){
+        const taskText = this.div.children[0]
+        const taskEditButon = this.div.children[1]
+        const taskInput = this.div.children[2];
+        const taskSaveButton = this.div.children[3]
+
+        taskEditButon.addEventListener('click', function(){
+            taskText.hidden = true;
+            taskEditButon.hidden = true;
+            taskInput.removeAttribute('hidden')
+            taskSaveButton.removeAttribute('hidden')
+            taskInput.value = this.text;
+            this.save(taskInput, taskText, taskEditButon, taskSaveButton);
+            }.bind(this))
+    }
+    save(taskInput, taskText, taskEditButon, taskSaveButton){
+        taskSaveButton.addEventListener('click', function(){
+            this.text = taskInput.value;
+            taskText.innerHTML = this.text;
+            taskText.removeAttribute('hidden');
+            taskEditButon.removeAttribute('hidden');
+            taskInput.hidden = true;
+            taskSaveButton.hidden = true;
+            this.edit();
+        }.bind(this))
     }
     changeStatus(){
 
@@ -40,8 +56,7 @@ class Task{
 
     }
     getTamplate(){
-        return `
-                    <p class="task__text">
+                return`<p class="task__text">
                         ${this.text}
                     </p>
                     <button class="task__edit-button">
@@ -51,7 +66,15 @@ class Task{
                                 fill="#fff"/>
                         </svg>
                     </button>
-                `
-         
-    }
+                    <input class="task__input" hidden>
+                    <div class="task__save-button" hidden>
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M 19.980469 5.9902344 A 1.0001 1.0001 0 0 0 19.292969 6.2929688 L 9 16.585938 L 5.7070312 13.292969 A 1.0001 1.0001 0 1 0 4.2929688 14.707031 L 8.2929688 18.707031 A 1.0001 1.0001 0 0 0 9.7070312 18.707031 L 20.707031 7.7070312 A 1.0001 1.0001 0 0 0 19.980469 5.9902344 z" 
+                            fill="#D0D0D0"></path>
+                        </svg>
+                    </div>
+                    `
+                
+        
+    };
 }
