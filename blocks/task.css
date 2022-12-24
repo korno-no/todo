@@ -36,3 +36,12 @@
     border-bottom: solid #d6d6d6 1px;
     font-size:16px;
 }
+.task__selected {
+    opacity: 0.6;
+    background-color: #d6d6d6;
+    border: #666 1px dashed ;
+}
+.task__empty{
+    opacity: 0.6;
+    border: #666 1px dashed ;
+}
