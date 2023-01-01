@@ -45,3 +45,6 @@
     opacity: 0.6;
     border: #666 1px dashed ;
 }
+[hidden] {
+    display: none !important;
+}

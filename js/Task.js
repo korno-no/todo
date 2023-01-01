@@ -1,22 +1,35 @@
 class Task{
-    constructor(text, status){
+    constructor(text, type){
         this.text= text;
-        this.status = status;
+        this.type = type;
     }
+    
     // methods
-    static create(text, status){
-        const task = new Task(text, status);
-        task.showNewTask();
-        //task.dragAndDrop();
+    static create(text, type){
+        const task = new Task(text, type);
+        task.createTask();
     }
-    showNewTask(){
-        const taskBoardListBacklog = arrayOfBoards[0].div
+    createTask(){
         this.div = document.createElement('div');
         this.div.className = 'task';
-        this.div.setAttribute('draggable', 'true') 
-        this.div.innerHTML += this.getTamplate();
-
-        taskBoardListBacklog.appendChild(this.div);
+        //we have two types of tasks 
+        //1 - new task, created via AddTaskBoard
+        //2 - empty task, created via TaskBoardList. This task will appear, if TaskBoardList(column) is empty
+        if( this.type === 'new'){
+            this.div.className += ' task__not-empty'
+            this.div.setAttribute('draggable', 'true'); 
+            this.div.innerHTML += this.getTamplate(this.type);
+            this.showNewTask();
+        }
+        else if(this.type === 'empty'){
+            this.div.className += ' task__empty';
+            this.div.innerHTML += this.getTamplate(this.type);
+        }
+    }
+    showNewTask(){  // depend on type it work only for new type
+        const taskBoardListBacklog = arrayOfBoards[0];
+        taskBoardListBacklog.div.appendChild(this.div);
+        arrayEmptyTasks.forEach(el => el.parentElement.children.length ===2? el.removeAttribute('hidden'): el.hidden = true );
         addTaskBoard.cleanInput();
         this.edit();
     }
@@ -46,17 +59,12 @@ class Task{
             this.edit();
         }.bind(this))
     }
-    changeStatus(){
-
-    }
     delete(){
 
     }
-    dragAndDrop(){
-    }
-    getTamplate(){
-                return`
-                        <p class="task__text">
+    getTamplate(type){
+        if(type=== 'new'){
+                return`<p class="task__text">
                             ${this.text}
                         </p>
                         <button class="task__edit-button">
@@ -72,8 +80,11 @@ class Task{
                                 <path d="M 19.980469 5.9902344 A 1.0001 1.0001 0 0 0 19.292969 6.2929688 L 9 16.585938 L 5.7070312 13.292969 A 1.0001 1.0001 0 1 0 4.2929688 14.707031 L 8.2929688 18.707031 A 1.0001 1.0001 0 0 0 9.7070312 18.707031 L 20.707031 7.7070312 A 1.0001 1.0001 0 0 0 19.980469 5.9902344 z" 
                                 fill="#D0D0D0"></path>
                             </svg>
-                        </div>
-                    `
+                        </div>`
+        }
+        else if(type=== 'empty'){
+            return `<p class="task__text">${this.text}</p>`
+        }
                 
         
     };

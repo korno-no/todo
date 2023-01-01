@@ -11,7 +11,7 @@ class AddTaskBoard{
     //methods
     addTask(e){
         e.preventDefault(); 
-        Task.create(this.input.value, 1);
+        Task.create(this.input.value, 'new');
     }
     cleanInput(){
         this.input.value = null

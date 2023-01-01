@@ -1,14 +1,11 @@
-const taskboard = document.querySelector('.taskboard')
-const arrayOfBoardsNames = ['Backlog', 'In process', 'Done', 'Bin'];
-const arrayOfBoards = []
+const taskboard = document.querySelector('.taskboard');
+
 
 let init = function(){
-    arrayOfBoardsNames.forEach(type => {
+    arrayOfBoardsNames.forEach((type, i) => {
         const taskBoardList = new TaskBoardList(type);
-        taskBoardList.create();
+        taskBoardList.create(i);
     });
 }
 const addTaskBoard = new AddTaskBoard(document.forms[0], document.forms[0].taskName, document.querySelector('.add-task__button'));
-
-//const addTaskBoard = new AddTaskBoard(document.forms[0], document.forms[0].taskName, document.querySelector('.add-task__button'));
 init()
